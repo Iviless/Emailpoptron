@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MassEmail-Sender</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/styles.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      type="text/css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron container-main">
+        <h1 class="display-4">Mass Email Sender</h1>
+        <hr class="my-4" />
+        <p class="lead">Envio de emails em massa</p>
+      </div>
+      <form enctype="multipart/form-data" method="POST">
+        <div id="form-files" class="form-group div-file-sent">
+          <div>
+            <label for="exampleFormControlFile1"
+              >Adicione arquivo com a lista de emails destinatários (separados por virgula) </label
+            >
+            <input
+              type="file"
+              class="form-control-file"
+              id="file_text"
+              name="file"
+            />
+          </div>
+          <button id="btn_lista" class="btn btn-primary">Enviar lista</button>
+        </div>
+      </form>
+      <form
+        method="POST"
+        id="form-api"
+        class="form-style"
+        enctype="multipart/form-data"
+      >
+        <h3 class="title-form">Por favor passe até 4 emails</h3>
+        <div class="alert alert-primary" role="alert">
+          <span>*emails usados para envio*</span>
+        </div>
+        <div class="row rows-style first-row">
+          <label class="label-style">Conta 1</label>
+          <div class="col">
+            <input
+              type="email"
+              name="email_1"
+              class="form-control"
+              placeholder="Email 1"
+              required
+            />
+          </div>
+          <div class="col">
+            <input
+              type="password"
+              name="senha_1"
+              class="form-control"
+              placeholder="Senha 1"
+              required
+            />
+          </div>
+          <div class="col">
+            <select
+              required
+              id="select_1"
+              name="select_1"
+              class="custom-select"
+            >
+              <option value="">Provedor do Email</option>
+              <option value="1">smtp.gmail.com</option>
+              <option value="2">smtp.office365.com</option>
+              <option value="3">smtp.mail.yahoo.com</option>
+              <option value="4">smtp.aol.com</option>
+              <option value="5">smtp-mail.outlook.com</option>
+              <option value="6">smtp.live.com</option>
+              <option value="7">smtps.uol.com.br</option>
+            </select>
+          </div>
+        </div>
+        <div class="row rows-style">
+          <label class="label-style">Conta 2</label>
+          <div class="col">
+            <input
+              type="text"
+              name="email_2"
+              class="form-control"
+              placeholder="Email 2"
+            />
+          </div>
+          <div class="col">
+            <input
+              type="password"
+              name="senha_2"
+              class="form-control"
+              placeholder="Senha 2"
+            />
+          </div>
+          <div class="col">
+            <select id="select_2" name="select_2" class="custom-select">
+              <option value="">Provedor do Email</option>
+              <option value="1">smtp.gmail.com</option>
+              <option value="2">smtp.office365.com</option>
+              <option value="3">smtp.mail.yahoo.com</option>
+              <option value="4">smtp.aol.com</option>
+              <option value="5">smtp-mail.outlook.com</option>
+              <option value="6">smtp.live.com</option>
+              <option value="7">smtps.uol.com.br</option>
+            </select>
+          </div>
+        </div>
+        <div class="row rows-style">
+          <label class="label-style">Conta 3</label>
+          <div class="col">
+            <input
+              type="text"
+              name="email_3"
+              class="form-control"
+              placeholder="Email 3"
+            />
+          </div>
+          <div class="col">
+            <input
+              type="password"
+              name="senha_3"
+              class="form-control"
+              placeholder="Senha 3"
+            />
+          </div>
+          <div class="col">
+            <select id="select_3" name="select_3" class="custom-select">
+              <option value="">Provedor do Email</option>
+              <option value="1">smtp.gmail.com</option>
+              <option value="2">smtp.office365.com</option>
+              <option value="3">smtp.mail.yahoo.com</option>
+              <option value="4">smtp.aol.com</option>
+              <option value="5">smtp-mail.outlook.com</option>
+              <option value="6">smtp.live.com</option>
+              <option value="7">smtps.uol.com.br</option>
+            </select>
+          </div>
+        </div>
+        <div class="row rows-style last-row">
+          <label class="label-style">Conta 4</label>
+          <div class="col">
+            <input
+              type="text"
+              name="email_4"
+              class="form-control"
+              placeholder="Email 4"
+            />
+          </div>
+          <div class="col">
+            <input
+              type="password"
+              name="senha_4"
+              class="form-control"
+              placeholder="Senha 4"
+            />
+          </div>
+          <div class="col">
+            <select id="select_4" name="select_4" class="custom-select">
+              <option value="">Provedor do Email</option>
+              <option value="1">smtp.gmail.com</option>
+              <option value="2">smtp.office365.com</option>
+              <option value="3">smtp.mail.yahoo.com</option>
+              <option value="4">smtp.aol.com</option>
+              <option value="5">smtp-mail.outlook.com</option>
+              <option value="6">smtp.live.com</option>
+              <option value="7">smtps.uol.com.br</option>
+            </select>
+          </div>
+        </div>
+        <div class="row-subject row">
+          <label class="label-style" for="subject">Assunto </label>
+          <div class="subject-div col-sm-6 col-md-6 col-lg-6">
+            <input type="text" name="subject" id="subject-mail" />
+          </div>
+        </div>
+        <div class="row_mail_body">
+          <h3 class="title-form">Corpo do email</h3>
+          <textarea
+            class="textarea_mail_body"
+            name="mail-body"
+            id="mail-body"
+          ></textarea>
+        </div>
+        <div class="d-flex mb-5">
+          <button
+            id="button-submit"
+            type="button"
+            class="btn btn-primary m-auto"
+          >
+            Submit
+          </button>
+          <div class="d-flex flex-row col-md-4">
+            <input
+              type="email"
+              name="email_test"
+              class="form-control mr-1"
+              placeholder="Email Teste"
+            />
+            <button
+              id="button-test"
+              type="button"
+              class="btn btn-primary m-auto"
+            >
+              Teste
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div
+        class="modal fade"
+        tabindex="-1"
+        role="dialog"
+        id="exampleModal"
+        data-backdrop="static"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let file;
+      let fileMailBody;
+      let formData = new FormData();
+      let form_data = new FormData();
+
+      $(document).ready(() => {
+        // $('#btn_lista').click(function(ev) {
+        //   ev.preventDefault();
+        // })
+
+        $('#file_text').change(function (ev) {
+          file = ev.target.files[0];
+        });
+      });
+
+      function submitFiles(e) {
+        e.preventDefault();
+
+        if (!confirm('Deseja enviar esta lista de emails?')) return;
+
+        form_data.append('mails_text_file', file);
+
+        $.ajax({
+          type: 'POST',
+          url: `${window.location.href}api/read_contents`,
+          cache: false,
+          processData: false,
+          contentType: false,
+          data: form_data,
+          dataType: 'json',
+          success: function (data) {
+            $('#form-files').fadeOut();
+            alert(data.status);
+          },
+        });
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+
+        if (!confirm('Deseja começar o envio de emails?')) return;
+
+        let email;
+        let senha;
+        let select;
+        let subject;
+        let mailBody;
+
+        const dataForm = [];
+
+        for (let i = 1; i < 5; i++) {
+          email = $(`input[name=email_${i}]`).val() !== '' ? $(`input[name=email_${i}]`).val()  : 'vazio166';
+          senha = $(`input[name=senha_${i}]`).val() !== '' ? $(`input[name=senha_${i}]`).val() : 'vazio166';
+          select = $(`select[name=select_${i}]`).find(':selected').text();
+
+          dataForm.push({ email, senha, select });
+        }
+
+        const emailTest = $('input[name=email_test]').val();
+        subject = $('input[name=subject]').val();
+        mailBody = $('textarea[name=mail-body]').val();
+
+        dataForm.push({ mailBody }, { subject });
+
+        if (emailTest !== '')dataForm.push({emailTest})
+
+        formData.append('data', JSON.stringify(dataForm));
+        console.log(dataForm)
+
+        $('#exampleModal').modal('show');
+        $('#exampleModal').addClass('d-flex align-items-center');
+
+        if (emailTest !== '') {
+          $('#exampleModal').modal('show');
+          $('#exampleModal').addClass('d-flex align-items-center');
+
+          $.ajax({
+            type: 'POST',
+            url: `${window.location.href}api/send_mail_teste`,
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function (result) {
+              if (result.code === 200) {
+                $('#exampleModal').removeClass('d-flex align-items-center');
+                $('#exampleModal').modal('hide');
+              };
+            },
+            complete: function (data) {
+              alert(`Todos os emails foram enviados com sucesso! Número total de emails: ${data.responseJSON.total}`);
+              window.location.reload();
+            },
+          });
+        } else {
+          if (!file) {
+            alert('Você precisa enviar um arquivo com os emails');
+            return;
+          }
+
+          $.ajax({
+            type: 'POST',
+            url: `${window.location.href}api/send_mail`,
+            processData: false,
+            cache: false,
+            contentType: false,
+            data: formData,
+            success: function (result) {
+              if (result.code === 200){
+                $('#exampleModal').removeClass('d-flex align-items-center');
+                $('#exampleModal').modal('hide');
+
+              };
+            },
+            complete: function (data) {
+              alert(`Todos os emails foram enviados com sucesso! Número total de emails: ${data.responseJSON.total}`);
+              window.location.reload();
+            },
+          });
+        }
+      }
+
+      $('#button-submit').click((e) => handleSubmit(e));
+      $('#button-test').click((e) => handleSubmit(e));
+      $('#btn_lista').click((e) => submitFiles(e));
+    </script>
+  </body>
+</html>
